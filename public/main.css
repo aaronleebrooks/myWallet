@@ -1,0 +1,101 @@
+
+body{
+  background-size: cover;
+  background-color: #56B6DF;
+  font-family: 'Raleway', sans-serif;
+  padding: 0;
+  margin: 0;
+  padding-top: 60px;
+}
+
+body *{
+  box-sizing: border-box;
+}
+
+header img{
+  display: block;
+  margin: 0 auto 30px;
+  width: auto;
+  height: 35px;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 48px;
+}
+
+.signUp {
+  background: #FEFEFE;
+  width: 400px;
+  padding: 40px;
+  margin: 0 auto;
+}
+
+.signUp legend{
+  font-style: normal;
+  color: #8F9CA1;
+  text-align: center;
+  padding-top: 10px;
+  margin: 0 auto 45px;
+  font-weight: 300px;
+  font-size: 35px;
+  line-height: 35px;
+  letter-spacing: 0;
+
+}
+
+input[type='text'], input[type='password'],
+button[type='submit']{
+  margin: 20px auto;
+  display: block;
+  width: 320px;
+  border: 2px solid #E7E7E7;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: left;
+  height: auto;
+}
+
+button[type='submit'] {
+  display: block;
+  height: auto;
+  background: #60D277;
+  border-radius: 3px;
+  color: #FEFEFE;
+  text-align: center;
+  border: 0;
+  padding: 15px;
+  margin-bottom: 0;
+}
+
+.button:hover {
+  background-color: #4D9F5D;
+  cursor: pointer;
+}
+
+.forgot {
+  font-size: 14px;
+  margin: 0;
+  margin-top: 10px;
+  color: #8F9CA1;
+  text-align: center;
+}
+
+.forgot a{
+  text-decoration: none;
+  color: #999;
+  border-bottom: 1px solid #bbb;
+}
+
+.logIn{
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #FEFEFE;
+}
+
+.logIn a{
+  color: #FEFEFE;
+}

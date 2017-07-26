@@ -4,15 +4,24 @@
   "description": "2nd Capston Project",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.15.3"
+    "base-64": "^0.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.4",
+    "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0"
   },
   "devDependencies": {
-    "chai": "^4.1.0",
+    "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "mocha": "^3.4.2"
+    "faker": "^3.1.0",
+    "mocha": "^3.2.0"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server.js",
     "test": "mocha"
   },
   "author": "Aaron Brooks",
