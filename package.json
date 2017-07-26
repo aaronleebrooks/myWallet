@@ -1,0 +1,27 @@
+{
+  "name": "mywallet",
+  "version": "1.0.0",
+  "description": "2nd Capston Project",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Brooks",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "myWallet"
+  },
+  "keywords": [
+    "capstone",
+    "node",
+    "mongo",
+    "express",
+    "mongoose"
+  ]
+}
