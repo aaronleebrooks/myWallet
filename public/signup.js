@@ -20,9 +20,9 @@ function signUp(){
 	if(password !== confirm_password) {
 		$('#signUp').append('<p>Passwords must match!</p>');
 	} else {
-		$.post(dashboardUrl, $(this), function(data) {
-		  console.log('success');
-		});
+		// $.post(dashboardUrl, $(this), function(data) {
+		//   console.log('success');
+		// });
 
 
 		// $.ajax({
@@ -35,11 +35,11 @@ function signUp(){
   //       catch: err => console.log(err)
   //   });
 
-		// fetch(dashboardUrl, {
-		// 	method: 'post',
-		// 	headers: headers,
-		// 	body: JSON.stringify($(this))
-		// })
+		fetch(dashboardUrl, {
+			method: 'post',
+			headers: headers,
+			body: JSON.stringify($(this))
+		})
 	}
 	})
 }

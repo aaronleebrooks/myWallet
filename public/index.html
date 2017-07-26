@@ -11,13 +11,13 @@
 	</header>
 
 	<main role="">
-		<form id='signIn' action= "/dashboard" method= "post" class= "signUp">
+		<form id='signIn' class= "signUp">
 
 			<label>Username</label>
 			<input type="text" name="username" placeholder="Don't lose your username" for= "username">
 
 			<label>Password</label>
-			<input type="password" name="password" placeholder="1234passw0rd" for="Password">
+			<input id="sign-up-password" type="password" name="password" placeholder="1234passw0rd" for="Password">
 
 			<div class="buttonForReal">
 				<button type= "submit" class= "button">Yes, I lost my wallet</button>
@@ -29,8 +29,10 @@
 		</form>
 
 		<footer role= "signup" class= "logIn">
-			<p><a href="./signup.html">Sign up</a> to make losing your wallet easier.</p>
+			<p><a href="./signup.html">Sign up</a> to lose the hassle of losing your wallet</p>
 		</footer>
 	</main>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="login.js"></script>
 </body>
 </html>
