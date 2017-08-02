@@ -9,11 +9,8 @@ const {Wallet} = require('./models');
 const router = express.Router();
 
 
-console.log('I"m here!');
-
 router.use(bodyParser.json());
 router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
   next()
 })
 
@@ -40,7 +37,6 @@ passport.use(strategy);
 
 
 router.post('/', (req, res) => {
-  console.log(req.body);
   if (!req.body) {
     return res.status(400).json({message: 'No request body'});
   }
@@ -113,21 +109,23 @@ router.post('/', (req, res) => {
 // if we're creating users. keep in mind, you can also
 // verify this in the Mongo shell.
 router.get('/dashboard/:id', (req, res) => {
-  console.log('hello')
   return User
     .findById(req.params.id)
     .exec()
     .then(users => res.json(users.justWallets()))
-    .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
+    .catch(err => {
+      res.status(500).json({message: err})
+    });
 });
 
 router.get('/', (req, res) => {
-  console.log('hello')
   return User
     .find()
     .exec()
     .then(users => res.json(users.map(user => user.apiRepr())))
-    .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
+    .catch(err => {
+      res.status(500).json({message: err})
+    });
 });
 
 // NB: at time of writing, passport uses callbacks, not promises
@@ -176,35 +174,28 @@ router.post('/dashboard/:id', (req, res) => {
   .findById(req.params.id)
   .then(function(user) {
     let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.name === walletArray.name && req.body.name === walletArray.name});
-    console.log(walletIndex, 'index')
     if(walletIndex == '-1') {
       user.wallet.push(req.body);
       // Need this line for mongoose to realize the array has been modified
       user.markModified('wallet');
       return user.save();
     } else {
-      console.log('You have two of those?');
     }
   })
   .then(function(saved) {
-      console.log('completed');
       res.sendStatus(204);
   })
   .catch(function(err) {
-    console.log(err);
   });
 });
 
 router.delete('/dashboard/:id', (req, res) => {
-  console.log(req.body);
   User
     .findById(req.params.id)
     .then(user => {
-      console.log(user);
         user.wallet.forEach(function(walletObj){
           if(walletObj.id === req.body.id){
             user.wallet.splice(user.wallet.indexOf(req.params.name));
-            console.log('deleting selected wallet item');
             user.markModified('wallet');
             user.save();
             res.sendStatus(204);
@@ -215,7 +206,6 @@ router.delete('/dashboard/:id', (req, res) => {
 
 router.put('/dashboard/:id', function(req, res, next) {
 
-  console.log(req.body);
   const requiredFields = ['name', 'description'];
   // for (let i=0; i<requiredFields.length; i++) {
   //   const field = requiredFields[i];
@@ -226,24 +216,19 @@ router.put('/dashboard/:id', function(req, res, next) {
   //   }
   // }
 
-  console.log(`Updating items \`${req.params.id}\``);
 
   User.findById(req.params.id)
   .then(function(user) {
-    console.log(user);
     let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.id === walletArray.id});
-    console.log(walletIndex, 'index');
     user.wallet[walletIndex] = req.body;
       // Need this line for mongoose to realize the array has been modified
       user.markModified('wallet');
     return user.save();
   })
   .then(function(saved) {
-      console.log('completed');
       res.sendStatus(204);
   })
   .catch(function(err) {
-    console.log(err);
   });
 });
 

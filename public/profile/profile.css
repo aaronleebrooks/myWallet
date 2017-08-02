@@ -1,6 +1,6 @@
 
 body{
-  background-color: #8CBEB2;
+  background-color: #A6C4BC;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -10,15 +10,14 @@ body *{
 
 header h1 {
   font-family: 'Alfa Slab One', cursive;
-  color: #5C4b51;
+  color: #524656;
   text-align: center;
   font-size: 60px;
   letter-spacing: 4px;
-/*  text-shadow: -2px 2px black, 2px 2px black, -2px -2px black, 2px -2px black;*/
 }
 
 .addSection {
-  background: #F2EBBF;
+  background: #E4DCCB;
   width: 75%;
   padding: 40px;
   margin: 0 auto;
@@ -50,7 +49,7 @@ header h1 {
 
 .button {
   display: block;
-  background: #F3B562;
+  background: #EA7A58;
   border-radius: 3px;
   color: #000000;
   border: 0;
@@ -60,7 +59,7 @@ header h1 {
 }
 
 .button:hover {
-  background-color: #ffa328;
+  background-color: #CF4747;
   cursor: pointer;
 }
 
@@ -110,7 +109,7 @@ header h1 {
 }
 
 .searchCard button {
-  background: #f47258;
+  background: #EA7A58;
   width: 90%;
   font-size: 14px;
   padding: 5px;
@@ -118,7 +117,7 @@ header h1 {
 }
 
 .searchCard button:hover {
-  background-color: #BD4932;
+  background-color: #CF4747;
   cursor: pointer;
 }
 
@@ -157,4 +156,17 @@ header h1 {
 
 .updateForm label {
   font-size: 15px;
+}
+
+.updateForm button {
+  background: #EA7A58;
+  width: 90%;
+  font-size: 14px;
+  padding: 5px;
+  height: 50px;
+}
+
+.updateForm button:hover {
+  background-color: #CF4747;
+  cursor: pointer;
 }

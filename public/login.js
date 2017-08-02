@@ -5,8 +5,6 @@ $('#signIn').on('submit', function(event) {
 	let username = $('#sign-in-user').val();
 	let password = $('#sign-in-password').val();
 
-	console.log(username, password);
-
 	$.ajax({ 
 		url: dashboardUrl, 
 		type: 'GET',

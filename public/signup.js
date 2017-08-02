@@ -7,10 +7,8 @@ function signUp(){
 	let password = $('#password').val();
 	let confirm_password = $('#confirm_password').val();
 
-	console.log(username, password, confirm_password);
-
 	if(password !== confirm_password) {
-		$('#signUp').append('<p>Passwords must match!</p>');
+		$('.confirmation').html('<p>Passwords must match!</p>');
 	} else {
 
 	var settings = {
@@ -20,7 +18,6 @@ function signUp(){
       contentType: 'application/json',
       dataType: 'json',
       success: function(got) {
-		 	console.log(got.id);
 			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
 			sessionStorage.id = got.id
 			sessionStorage.username = got.username
@@ -33,7 +30,6 @@ function signUp(){
 
     $.ajax(settings)
         .done(function (got) {
-		 	console.log(got.user.id);
 			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
 			sessionStorage.id = got.user.id
 			sessionStorage.username = got.user.username

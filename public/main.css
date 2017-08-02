@@ -1,31 +1,24 @@
 
 body{
   background-size: cover;
-  background-color: #56B6DF;
+  background-color: #A6C4BC;
   font-family: 'Raleway', sans-serif;
-  padding: 0;
-  margin: 0;
-  padding-top: 60px;
 }
 
 body *{
   box-sizing: border-box;
 }
 
-header img{
-  display: block;
-  margin: 0 auto 30px;
-  width: auto;
-  height: 35px;
-}
-
 header h1 {
+  font-family: 'Alfa Slab One', cursive;
+  color: #524656;
   text-align: center;
-  font-size: 48px;
+  font-size: 60px;
+  letter-spacing: 4px;
 }
 
 .signUp {
-  background: #FEFEFE;
+  background: #E4DCCB;
   width: 400px;
   padding: 40px;
   margin: 0 auto;
@@ -60,7 +53,7 @@ button[type='submit']{
 button[type='submit'] {
   display: block;
   height: auto;
-  background: #60D277;
+  background: #EA7A58;
   border-radius: 3px;
   color: #FEFEFE;
   text-align: center;
@@ -70,22 +63,8 @@ button[type='submit'] {
 }
 
 .button:hover {
-  background-color: #4D9F5D;
+  background-color: #CF4747;
   cursor: pointer;
-}
-
-.forgot {
-  font-size: 14px;
-  margin: 0;
-  margin-top: 10px;
-  color: #8F9CA1;
-  text-align: center;
-}
-
-.forgot a{
-  text-decoration: none;
-  color: #999;
-  border-bottom: 1px solid #bbb;
 }
 
 .logIn{
@@ -93,9 +72,9 @@ button[type='submit'] {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  color: #FEFEFE;
+  color: #524656;
 }
 
 .logIn a{
-  color: #FEFEFE;
+  color: #524656;
 }

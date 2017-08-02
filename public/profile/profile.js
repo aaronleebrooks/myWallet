@@ -49,7 +49,6 @@ function addItem() {
 			url: $('#item-link').val(),
 			image: $('#item-img').val()
 		};
-		console.log(postBody, 'postBody')
 	$.ajax({ 
 		url: profileUrl+pageId, 
 		type: 'POST',
@@ -60,7 +59,6 @@ function addItem() {
 		 	location.reload();
 		},
       error: function(res) {
-		console.log(res);
          }
 	})
 	})
@@ -70,7 +68,6 @@ function deleteItem(cardId) {
 	$('#'+cardId+' #deleteItem').on('click', function(event){
 		event.preventDefault();
 		let postBody = {id: cardId};
-		console.log(postBody, 'postBody')
 	$.ajax({ 
 		url: profileUrl+pageId, 
 		type: 'DELETE',
@@ -81,7 +78,7 @@ function deleteItem(cardId) {
 		 	location.reload();
 		},
       error: function(res) {
-		console.log(res);
+      	return res;
          }
 	})
 	})
@@ -113,7 +110,6 @@ function updateItem(card) {
 
 function closeUpdater(card) {
 	$('#closeButton').on('click', function(event) {
-		console.log('helo')
 		event.preventDefault();
 		$('#'+card._id).replaceWith(
 			'<div class="searchCard" id="'+card._id+'">' +
@@ -139,7 +135,6 @@ function closeUpdater(card) {
 }
 
 function putItem(cardId) {
-	console.log('hello')
 	$('#'+cardId+' .submitUpdateButton').on('click', function(event){
 		event.preventDefault();
 		let postBody = {
@@ -149,7 +144,6 @@ function putItem(cardId) {
 			image: $('#update-img').val(),
 			id: cardId
 		};
-		console.log(postBody, 'postBody')
 	$.ajax({ 
 		url: profileUrl+pageId, 
 		type: 'PUT',
@@ -160,7 +154,7 @@ function putItem(cardId) {
 		 	location.reload();
 		},
       error: function(res) {
-		console.log(res);
+      	return res;
          }
 	})
 	})
@@ -209,16 +203,13 @@ $('#log-out').on('click', function(event) {
 });
 
 function getWallet() {
-	console.log(profileUrl+pageId);
 	$.ajax({ 
 		url: profileUrl+pageId, 
 		type: 'GET',
 		 success: function(user) { 
-		 	console.log(user);
 		 	showWallets(user.wallet);
 		},
       error: function(res) {
-		console.log(res);
          }
 	})
 }
