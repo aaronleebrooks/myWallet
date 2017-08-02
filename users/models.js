@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
+const WalletSchema = mongoose.Schema({
+  name: {type: String, required: true},
+  description: {type: String, required: true},
+  url: {type: String},
+  image: {type: String}
+});
 
 const UserSchema = mongoose.Schema({
   username: {
@@ -13,12 +19,23 @@ const UserSchema = mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  wallet: [WalletSchema]
 });
 
 UserSchema.methods.apiRepr = function() {
   return {
-    username: this.username || ''
+    username: this.username || '',
+    id: this.id,
+    wallet: this.wallet
+  };
+}
+
+UserSchema.methods.justWallets = function() {
+  return {
+    username: this.username || '',
+    id: this.id,
+    wallet: this.wallet
   };
 }
 
@@ -31,5 +48,6 @@ UserSchema.statics.hashPassword = function(password) {
 }
 
 const User = mongoose.model('User', UserSchema, 'users');
+const Wallet = mongoose.model('Wallet', WalletSchema);
 
-module.exports = {User};
+module.exports = {User, Wallet};

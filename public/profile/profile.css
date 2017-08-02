@@ -1,0 +1,160 @@
+
+body{
+  background-color: #8CBEB2;
+  font-family: 'Raleway', sans-serif;
+}
+
+body *{
+  box-sizing: border-box;
+}
+
+header h1 {
+  font-family: 'Alfa Slab One', cursive;
+  color: #5C4b51;
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: 4px;
+/*  text-shadow: -2px 2px black, 2px 2px black, -2px -2px black, 2px -2px black;*/
+}
+
+.addSection {
+  background: #F2EBBF;
+  width: 75%;
+  padding: 40px;
+  margin: 0 auto;
+}
+
+#addForm{
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 18px;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#addForm input {
+  margin: auto;
+  width: 100%;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: left;
+}
+
+#addForm label {
+  font-size: 15px;
+}
+
+.button {
+  display: block;
+  background: #F3B562;
+  border-radius: 3px;
+  color: #000000;
+  border: 0;
+  padding: 15px;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.button:hover {
+  background-color: #ffa328;
+  cursor: pointer;
+}
+
+.logo p{
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #000000;
+}
+
+.logo a{
+  color: #000000;
+}
+
+#first-line{
+  text-align: center;
+}
+
+.searchCard {
+  display: flex;
+  border: 1px black;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchCard h2 {
+  display: inline-block;
+  width: 85%;
+}
+
+.plusMinusButtons {
+  display: inline-block;
+  width: 15px;
+}
+
+.searchImg {
+  width: 35%;
+  display: inline-block;
+  height: auto;
+}
+;
+.searchCard form {
+  display: inline-block;
+  width: 65%;
+}
+
+.searchCard button {
+  background: #f47258;
+  width: 90%;
+  font-size: 14px;
+  padding: 5px;
+  height: 50px;
+}
+
+.searchCard button:hover {
+  background-color: #BD4932;
+  cursor: pointer;
+}
+
+.searchCard form {
+  width: 20%;
+}
+
+.searchCard a {
+  flex-shrink: 70%;
+  width: 15%;
+}
+
+.hidden {
+  display: none;
+}
+
+.updateForm{
+  display: flex;
+  width: 100%;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 18px;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.updateForm input {
+  margin: auto;
+  width: 100%;
+  padding: 15px;
+  border-radius: 3px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.updateForm label {
+  font-size: 15px;
+}

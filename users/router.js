@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 
 const {User} = require('./models');
+const {Wallet} = require('./models');
 
 const router = express.Router();
 
@@ -39,7 +40,6 @@ passport.use(strategy);
 
 
 router.post('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin','*');
   console.log(req.body);
   if (!req.body) {
     return res.status(400).json({message: 'No request body'});
@@ -95,8 +95,6 @@ router.post('/', (req, res) => {
         .create({
           username: username,
           password: hash,
-          firstName: firstName,
-          lastName: lastName
         })
     })
     .then(user => {
@@ -114,6 +112,15 @@ router.post('/', (req, res) => {
 // we're just doing this so we have a quick way to see
 // if we're creating users. keep in mind, you can also
 // verify this in the Mongo shell.
+router.get('/dashboard/:id', (req, res) => {
+  console.log('hello')
+  return User
+    .findById(req.params.id)
+    .exec()
+    .then(users => res.json(users.justWallets()))
+    .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
+});
+
 router.get('/', (req, res) => {
   console.log('hello')
   return User
@@ -122,7 +129,6 @@ router.get('/', (req, res) => {
     .then(users => res.json(users.map(user => user.apiRepr())))
     .catch(err => console.log(err) && res.status(500).json({message: 'Internal server error'}));
 });
-
 
 // NB: at time of writing, passport uses callbacks, not promises
 const basicStrategy = new BasicStrategy(function(username, password, callback) {
@@ -147,14 +153,99 @@ const basicStrategy = new BasicStrategy(function(username, password, callback) {
     });
 });
 
-
 passport.use(basicStrategy);
 router.use(passport.initialize());
 
-router.get('/dashboard',
+router.get('/me',
   passport.authenticate('basic', {session: false}),
   (req, res) => res.json({user: req.user.apiRepr()})
 );
 
+router.post('/dashboard/:id', (req, res) => {
+  const requiredFields = ['name'];
+  for  (let i=0; i<requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
+
+  User
+  .findById(req.params.id)
+  .then(function(user) {
+    let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.name === walletArray.name && req.body.name === walletArray.name});
+    console.log(walletIndex, 'index')
+    if(walletIndex == '-1') {
+      user.wallet.push(req.body);
+      // Need this line for mongoose to realize the array has been modified
+      user.markModified('wallet');
+      return user.save();
+    } else {
+      console.log('You have two of those?');
+    }
+  })
+  .then(function(saved) {
+      console.log('completed');
+      res.sendStatus(204);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+});
+
+router.delete('/dashboard/:id', (req, res) => {
+  console.log(req.body);
+  User
+    .findById(req.params.id)
+    .then(user => {
+      console.log(user);
+        user.wallet.forEach(function(walletObj){
+          if(walletObj.id === req.body.id){
+            user.wallet.splice(user.wallet.indexOf(req.params.name));
+            console.log('deleting selected wallet item');
+            user.markModified('wallet');
+            user.save();
+            res.sendStatus(204);
+          }
+        })
+    })
+});
+
+router.put('/dashboard/:id', function(req, res, next) {
+
+  console.log(req.body);
+  const requiredFields = ['name', 'description'];
+  // for (let i=0; i<requiredFields.length; i++) {
+  //   const field = requiredFields[i];
+  //   if (!(field in req.body)) {
+  //     const message = `Missing \`${field}\` in request body`
+  //     console.error(message);
+  //     return res.status(400).send(message);
+  //   }
+  // }
+
+  console.log(`Updating items \`${req.params.id}\``);
+
+  User.findById(req.params.id)
+  .then(function(user) {
+    console.log(user);
+    let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.id === walletArray.id});
+    console.log(walletIndex, 'index');
+    user.wallet[walletIndex] = req.body;
+      // Need this line for mongoose to realize the array has been modified
+      user.markModified('wallet');
+    return user.save();
+  })
+  .then(function(saved) {
+      console.log('completed');
+      res.sendStatus(204);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+});
 
 module.exports = router;
+

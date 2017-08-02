@@ -7,39 +7,38 @@ function signUp(){
 	let password = $('#password').val();
 	let confirm_password = $('#confirm_password').val();
 
-	let bodyArray = {
-		username: username,
-		password: password
-	};
-
-	let headers = new Headers();
-	headers.append('Content-Type', 'application/json', 'charset=utf-8');
-
 	console.log(username, password, confirm_password);
 
 	if(password !== confirm_password) {
 		$('#signUp').append('<p>Passwords must match!</p>');
 	} else {
-		// $.post(dashboardUrl, $(this), function(data) {
-		//   console.log('success');
-		// });
 
+	var settings = {
+      url: dashboardUrl,
+      method: 'POST',
+      data: JSON.stringify({username: username, password: password}),
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function(got) {
+		 	console.log(got.id);
+			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
+			sessionStorage.id = got.id
+			sessionStorage.username = got.username
+			window.location = './profile/profile.html';
+        },
+      error: function(res) {
+		console.log(res);
+         }
+    };
 
-		// $.ajax({
-  //       type: "POST",
-  //       url: dashboardUrl,
-  //       data: $(this).serializeArray(),
-  //       success: function () {
-  //           console.log('did it');
-  //       },
-  //       catch: err => console.log(err)
-  //   });
-
-		fetch(dashboardUrl, {
-			method: 'post',
-			headers: headers,
-			body: JSON.stringify($(this))
-		})
+    $.ajax(settings)
+        .done(function (got) {
+		 	console.log(got.user.id);
+			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
+			sessionStorage.id = got.user.id
+			sessionStorage.username = got.user.username
+			window.location = './profile/profile.html';
+        })
 	}
 	})
 }

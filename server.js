@@ -18,21 +18,6 @@ app.use(cors());
 app.use('/users', users);
 app.use(express.static('public'));
 
-app.use(function(req, res, next) {  
-  res.header('Access-Control-Allow-Origin', 'http://local:8001');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header(
-    'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, X-Api-Key'
-  );
-  res.header('Access-Control-Allow-Credentials', 'true');
-  if ('OPTIONS' === req.method) {
-    res.sendStatus(200);
-  }
-  else {
-    next();
-  }
-});
-
 app.use('*', function(req, res) {
   return res.status(404).json({message: 'Not Found Kiddo'});
 });
@@ -43,7 +28,7 @@ let server;
 
 function runServer() {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, err => {
+    mongoose.connect(DATABASE_URL, {useMongoClient: true}, err => {
       if (err) {
         return reject(err);
       }
