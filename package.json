@@ -1,7 +1,7 @@
 {
   "name": "mywallet",
   "version": "1.0.0",
-  "description": "2nd Capston Project",
+  "description": "2nd Capstone Project",
   "main": "index.js",
   "dependencies": {
     "base-64": "^0.1.0",
@@ -21,7 +21,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node /server/server.js",
     "test": "mocha"
   },
   "author": "Aaron Brooks",

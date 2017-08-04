@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>myWallet</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 </head>
 <body>
-	<header role= "logo" class="logo">
+	<header role= "logo" class="logo" role="banner">
 		<h1>Oh... Did you lose your Wallet?</h1>
 	</header>
 
-	<main role="">
-		<form id='signIn' class= "signUp">
+	<main role="signIn">
+		<form id='signIn' class= "signUp" for="signIn">
 
 			<label>Username</label>
 			<input id="sign-in-user" type="text" name="username" placeholder="Don't lose your username" for= "username">
@@ -25,11 +25,11 @@
 			</div>
 		</form>
 
-		<footer role= "signup" class= "logIn">
+		<footer role="signup-link" class= "logIn">
 			<p><a href="./signup.html">Sign up</a> to lose the hassle of losing your wallet</p>
 		</footer>
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="login.js"></script>
+	<script type="text/javascript" src="./js/login.js"></script>
 </body>
 </html>

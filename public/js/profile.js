@@ -1,13 +1,15 @@
-const profileUrl = 'http://localhost:8080/users/dashboard/'
+const profileUrl = 'http://localhost:8080/users/wallet/'
 
 const pageId = sessionStorage.getItem("id")
 const pageUser = sessionStorage.getItem("username")
 
 function addButton(){
-	$('#first-line').replaceWith('<p id="first-line">Hello, '+ pageUser +' <a href="../index.html" id="log-out">Log Out</a></p>');
+	$('#first-line').replaceWith(
+		'<p id="first-line">Hello, '+ pageUser +' <a href="./index.html" id="log-out">Log Out</a></p>'
+		);
 		$('#addForm').on('click', function(event) {
 			event.preventDefault();
-			$('#addForm').replaceWith('<form id="addForm">' +
+			$('#addForm').replaceWith('<form id="addForm" for="addForm">' +
 					'<label>Item Name</label>' +
 					`<input id="item-name" type="text" name="username" placeholder="ex. Visa Card, Driver's License, picture of Mom" for= "item name">` +
 
@@ -33,7 +35,7 @@ function closeButton() {
 	$('#addCloseButton').on('click', function(event) {
 		event.preventDefault();
 		$('#addForm').replaceWith(
-		'<form id="addForm">' +
+		'<form id="addForm" for="addForm">' +
 			'<button class="button" type="submit">Add something to your wallet</button>' +
 		'</form>');
 		addButton();
@@ -87,7 +89,7 @@ function deleteItem(cardId) {
 function updateItem(card) {
 	$('#'+card._id+' .updateItem').on('click', function(event){
 		event.preventDefault();
-		$('#'+card._id).replaceWith('<form id="'+card._id+'" class="updateForm">' +
+		$('#'+card._id).replaceWith('<form id="'+card._id+'" class="updateForm" for="'+card._id+'">' +
 			'<label>Item Name</label>' +
 			'<input id="update-name" type="text" name="username" value="'+ card.name +'" for= "update name">' +
 

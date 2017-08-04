@@ -3,17 +3,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
-const {User} = require('./models');
-const {Wallet} = require('./models');
+const {User, Wallet} = require('../models/models');
 
 const router = express.Router();
 
 
 router.use(bodyParser.json());
-router.use(function timeLog (req, res, next) {
-  next()
-})
 
+//basic encrpytion strategy for using Passport
 const strategy = new BasicStrategy(
   (username, password, cb) => {
     User
@@ -35,43 +32,57 @@ const strategy = new BasicStrategy(
 
 passport.use(strategy);
 
-
+//adds a new user, but checks to make sure all required fields are met.
 router.post('/', (req, res) => {
   if (!req.body) {
-    return res.status(400).json({message: 'No request body'});
+    return res.status(400).json({
+      message: 'No request body'
+    });
   }
 
   if (!('username' in req.body)) {
-    return res.status(422).json({message: 'Missing field: username'});
+    return res.status(422).json({
+      message: 'Missing field: username'
+    });
   }
 
   let {username, password, firstName, lastName} = req.body;
 
   if (typeof username !== 'string') {
-    return res.status(422).json({message: 'Incorrect field type: username'});
+    return res.status(422).json({
+      message: 'Incorrect field type: username'
+    });
   }
 
   username = username.trim();
 
   if (username === '') {
-    return res.status(422).json({message: 'Incorrect field length: username'});
+    return res.status(422).json({
+      message: 'Incorrect field length: username'
+    });
   }
 
   if (!(password)) {
-    return res.status(422).json({message: 'Missing field: password'});
+    return res.status(422).json({
+      message: 'Missing field: password'
+    });
   }
 
   if (typeof password !== 'string') {
-    return res.status(422).json({message: 'Incorrect field type: password'});
+    return res.status(422).json({
+      message: 'Incorrect field type: password'
+    });
   }
 
   password = password.trim();
 
   if (password === '') {
-    return res.status(422).json({message: 'Incorrect field length: password'});
+    return res.status(422).json({
+      message: 'Incorrect field length: password'
+    });
   }
 
-  // check for existing user
+  // checks for existing user
   return User
     .find({username})
     .count()
@@ -104,25 +115,12 @@ router.post('/', (req, res) => {
     });
 });
 
-// never expose all your users like below in a prod application
-// we're just doing this so we have a quick way to see
-// if we're creating users. keep in mind, you can also
-// verify this in the Mongo shell.
-router.get('/dashboard/:id', (req, res) => {
+//this gets the main wallet for the user based on their ID. The wallet is where their wallet is held.
+router.get('/wallet/:id', (req, res) => {
   return User
     .findById(req.params.id)
     .exec()
     .then(users => res.json(users.justWallets()))
-    .catch(err => {
-      res.status(500).json({message: err})
-    });
-});
-
-router.get('/', (req, res) => {
-  return User
-    .find()
-    .exec()
-    .then(users => res.json(users.map(user => user.apiRepr())))
     .catch(err => {
       res.status(500).json({message: err})
     });
@@ -154,12 +152,16 @@ const basicStrategy = new BasicStrategy(function(username, password, callback) {
 passport.use(basicStrategy);
 router.use(passport.initialize());
 
+//checks to make sure a user exists and has the proper credentials before proceeding to the wallet.
 router.get('/me',
   passport.authenticate('basic', {session: false}),
-  (req, res) => res.json({user: req.user.apiRepr()})
+  (req, res) => 
+  res.json({user: req.user.apiRepr()})
 );
 
-router.post('/dashboard/:id', (req, res) => {
+//Adds a new item to the wallet.
+router.post('/wallet/:id', (req, res) => {
+  //Checks to make sure the required fields are there. In this case, it is only the item description 
   const requiredFields = ['name'];
   for  (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -173,29 +175,32 @@ router.post('/dashboard/:id', (req, res) => {
   User
   .findById(req.params.id)
   .then(function(user) {
-    let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.name === walletArray.name && req.body.name === walletArray.name});
+    let walletIndex = user.wallet.findIndex(function(walletArray) {
+      return req.body.name === walletArray.name && req.body.name === walletArray.name
+    });
+    //this makes sure the 
     if(walletIndex == '-1') {
       user.wallet.push(req.body);
       // Need this line for mongoose to realize the array has been modified
       user.markModified('wallet');
       return user.save();
-    } else {
     }
   })
   .then(function(saved) {
       res.sendStatus(204);
   })
-  .catch(function(err) {
-  });
+    .catch(err => {
+      res.status(500).json({message: err})
+    });
 });
 
-router.delete('/dashboard/:id', (req, res) => {
+router.delete('/wallet/:id', (req, res) => {
   User
     .findById(req.params.id)
     .then(user => {
         user.wallet.forEach(function(walletObj){
           if(walletObj.id === req.body.id){
-            user.wallet.splice(user.wallet.indexOf(req.params.name));
+            user.wallet.splice(user.wallet.indexOf(req.params.id));
             user.markModified('wallet');
             user.save();
             res.sendStatus(204);
@@ -204,22 +209,24 @@ router.delete('/dashboard/:id', (req, res) => {
     })
 });
 
-router.put('/dashboard/:id', function(req, res, next) {
+router.put('/wallet/:id', function(req, res, next) {
 
   const requiredFields = ['name', 'description'];
-  // for (let i=0; i<requiredFields.length; i++) {
-  //   const field = requiredFields[i];
-  //   if (!(field in req.body)) {
-  //     const message = `Missing \`${field}\` in request body`
-  //     console.error(message);
-  //     return res.status(400).send(message);
-  //   }
-  // }
+  for (let i=0; i<requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`
+      console.error(message);
+      return res.status(400).send(message);
+    }
+  }
 
 
   User.findById(req.params.id)
   .then(function(user) {
-    let walletIndex = user.wallet.findIndex(function(walletArray) {return req.body.id === walletArray.id});
+    let walletIndex = user.wallet.findIndex(function(walletArray) {
+      return req.body.id === walletArray.id
+    });
     user.wallet[walletIndex] = req.body;
       // Need this line for mongoose to realize the array has been modified
       user.markModified('wallet');
@@ -228,8 +235,9 @@ router.put('/dashboard/:id', function(req, res, next) {
   .then(function(saved) {
       res.sendStatus(204);
   })
-  .catch(function(err) {
-  });
+    .catch(err => {
+      res.status(500).json({message: err})
+    })
 });
 
 module.exports = router;

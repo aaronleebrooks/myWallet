@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>myWallet</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 </head>
 <body>
-	<header role= "logo" class="logo">
+	<header role= "logo" class="logo" role="banner">
 		<h1>Make losing your Wallet easier.</h1>
 	</header>
 
 	<main role="">
-		<form id='signUp' method= "post" class= "signUp">
+		<form id='signUp' method= "post" class= "signUp" role="signUp" for="signUp">
 			<label>Username</label>
-			<input id="username" type="text" name="username" placeholder="Feel free to use demo" for= "username">
+			<input id="username" type="text" name="username" placeholder="Just don't lose your username" for= "username">
 
 			<label>Password</label>
-			<input id="password" type="password" name="password" placeholder="Feel free to use demo" for="Password">
+			<input id="password" type="password" name="password" placeholder="p4ssw0rd321" for="Password">
 
 			<label>Confirm Password</label>
-			<input id="confirm_password" type="password" name="confirm_password" placeholder="Feel free to use demo" for="confirm_password">
+			<input id="confirm_password" type="password" name="confirm_password" placeholder="Type what you wrote above, or else!" for="confirm_password">
 
 			<div class="buttonForReal">
 				<button type= "submit" class= "button">Sign Up</button>
@@ -28,11 +28,11 @@
 			<div class= "confirmation"></div>
 		</form>
 
-		<footer role= "signup" class= "logIn">
+		<footer role="signin-link" class= "logIn">
 			<p>Been here before? <a href="./index.html">Log In</a></p>
 		</footer>
 	</main>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="signup.js"></script>
+	<script type="text/javascript" src="./js/signup.js"></script>
 </body>
 </html>

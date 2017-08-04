@@ -1,14 +1,14 @@
-const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const users = require('./users/router');
+const users = require('../routes/router');
+
 
 mongoose.Promise = global.Promise;
 
-const {PORT, DATABASE_URL} = require('./config');
+const {PORT, DATABASE_URL} = require('../config/config');
 
 const app = express();
 

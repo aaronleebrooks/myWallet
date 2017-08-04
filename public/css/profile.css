@@ -113,7 +113,7 @@ header h1 {
   width: 90%;
   font-size: 14px;
   padding: 5px;
-  height: 50px;
+  height: 75px;
 }
 
 .searchCard button:hover {
@@ -169,4 +169,33 @@ header h1 {
 .updateForm button:hover {
   background-color: #CF4747;
   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .searchImg {
+    width: 105%;
+    display: block;
+    height: auto;
+  }
+
+  .hidden {
+  display: none;
+}
+
+.searchCard {
+  display: block;
+}
+
+.searchCard button {
+  background: #EA7A58;
+  width: 500%;
+  font-size: 12px;
+  padding: 5px;
+  height: 50px;
+
+}
+
+.description{
+  text-align: center;
+}
 }

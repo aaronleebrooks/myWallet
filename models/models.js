@@ -1,8 +1,6 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
-
 const WalletSchema = mongoose.Schema({
   name: {type: String, required: true},
   description: {type: String, required: true},
