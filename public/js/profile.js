@@ -1,4 +1,4 @@
-const profileUrl = 'https://localhost:8080/users/wallet/'
+const profileUrl = 'mongodb://demo:demo@ds129053.mlab.com:29053/mywallet/users/wallet/'
 
 const pageId = sessionStorage.getItem("id")
 const pageUser = sessionStorage.getItem("username")

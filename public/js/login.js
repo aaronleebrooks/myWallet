@@ -1,4 +1,4 @@
-const dashboardUrl = 'https://localhost:8080/users/me'
+const dashboardUrl = 'mongodb://demo:demo@ds129053.mlab.com:29053/mywallet/users/me'
 
 $('#signIn').on('submit', function(event) {
 	event.preventDefault();
