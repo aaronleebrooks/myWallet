@@ -10,7 +10,14 @@ Users can create their own account to store their 'wallet.' Once inside the site
 
 Moving forward, I would like to implement higher security and encryption on the wallet page, so that users could feel comfortable holding more secure information, such as credit card or Driver's License numbers. That will add increased functionality to the website because then you could really replace your items at the click of a mouse. 
 
-##Documentation
+##Screenshots
+
+![signup page](./screenshots/signup.png)
+![login page](./screenshots/login.png)
+![profile page](./screenshots/profile.png)
+
+##Documentation 
+
 ###Users
 
 GET '/me' - This route authenticates the user and checks the username and password by the Authorization headers. This API uses passport for basic authentication of usernames and passwords.
@@ -26,3 +33,15 @@ POST 'users/wallet/:id' - This route posts a new item to the user's wallet array
 PUT 'users/wallet/:id' - This route updates an existing item in the user's wallet array. This route looks at the request body, not the parameters, to post the data. The ID parameter is to find the user, not the wallet item. This route requires the keys 'id', 'name', and 'description.' 'url' and 'image' are not required, but encouraged.
 
 DELETE 'users/wallet/:id' - This route deletes an existing item in the user's wallet array. This route looks at the request body, not the parameters, to post the data. The ID parameter is to find the user, not the wallet item. This route just requires the 'id' key for the wallet item.
+
+
+##Technologies Used
+- HTML/CSS/Javascript
+- Node.js/Mongo/Mongoose
+- Heroku/TravisCI
+- Lodash
+- Passport
+- Body-Parser
+- Express
+- Faker/Mocha/Chai
+- UploadCare
