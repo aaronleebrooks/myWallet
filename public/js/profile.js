@@ -1,4 +1,4 @@
-const profileUrl = 'http://localhost:8080/users/wallet/'
+const profileUrl = 'https://localhost:8080/users/wallet/'
 
 const pageId = sessionStorage.getItem("id")
 const pageUser = sessionStorage.getItem("username")

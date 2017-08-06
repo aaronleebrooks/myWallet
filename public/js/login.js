@@ -1,4 +1,4 @@
-const dashboardUrl = 'http://localhost:8080/users/me'
+const dashboardUrl = 'https://localhost:8080/users/me'
 
 $('#signIn').on('submit', function(event) {
 	event.preventDefault();
