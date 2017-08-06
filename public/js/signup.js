@@ -26,10 +26,11 @@ function signUp(){
 			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
 			sessionStorage.id = got.id
 			sessionStorage.username = got.username
-			window.location = '../profile.html';
+			window.location = './profile.html';
         },
       error: function(res) {
 		console.log(res);
+		$('.confirmation').replaceWith(`<p class="confirmation">${res.responseJSON.message}</p>`)
          }
     };
 
@@ -39,7 +40,7 @@ function signUp(){
 			sessionStorage.headers = "Basic "+ btoa(username+ ":"+ password);
 			sessionStorage.id = got.user.id
 			sessionStorage.username = got.user.username
-			window.location = '../profile.html';
+			window.location = './profile.html';
         })
 	}
 	})

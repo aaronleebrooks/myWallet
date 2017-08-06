@@ -18,7 +18,10 @@ $('#signIn').on('submit', function(event) {
 			sessionStorage.id = got.user.id
 			sessionStorage.username = got.user.username
 			window.location = './profile.html';
-		} 
-
+		}, 
+	      error: function(res) {
+			console.log(res);
+			$('.confirmation').replaceWith(`<p class="confirmation">Incorrect Username or Password</p>`)
+	         }
+	    });
 	});
-});

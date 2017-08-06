@@ -30,7 +30,7 @@ header h1 {
   border-radius: 3px;
   font-size: 18px;
   margin: auto;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -45,6 +45,8 @@ header h1 {
 
 #addForm label {
   font-size: 15px;
+  display: block;
+  width: 100%;
 }
 
 .button {
@@ -56,6 +58,24 @@ header h1 {
   padding: 15px;
   margin: 5px;
   font-size: 15px;
+  width: 100%;
+}
+
+.uploadcare--widget__button_type_open {
+  display: block;
+  background: #EA7A58;
+  border-radius: 3px;
+  color: #000000;
+  border: 0;
+  padding: 15px;
+  margin: 5px 0px 5px 0px;
+  font-size: 15px;
+  width: 100%;
+}
+
+.uploadcare--widget__button_type_open:hover {
+  background-color: #CF4747;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -156,6 +176,8 @@ header h1 {
 
 .updateForm label {
   font-size: 15px;
+  display: block;
+  width: 100%;
 }
 
 .updateForm button {

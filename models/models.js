@@ -21,21 +21,17 @@ const UserSchema = mongoose.Schema({
   wallet: [WalletSchema]
 });
 
-UserSchema.methods.apiRepr = function() {
-  return {
-    username: this.username || '',
-    id: this.id,
-    wallet: this.wallet
-  };
-}
+UserSchema.methods.removeCard = function(id) {
+  let user = this;
 
-UserSchema.methods.justWallets = function() {
-  return {
-    username: this.username || '',
-    id: this.id,
-    wallet: this.wallet
-  };
-}
+  return user.update({
+    $pull: {
+      wallet: {
+        _id: id
+      }
+    }
+  });
+};
 
 UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);

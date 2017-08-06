@@ -20,7 +20,7 @@ function addButton(){
 					'<input id="item-link" type="text" name="link" placeholder="Link to item or how to replace" for="item description">' +
 
 					'<label>Picture</label>' +
-					'<input id="item-img" type="text" name="img" placeholder="URL to image" for="item image">' +
+					'<input class="button" id="item-img" type="hidden" role="uploadcare-uploader" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
 					'<button id="addCloseButton" class="button" type="button">Close</button>' +
 					'<button id="submitButton" class="button" type="submit">Add something to your wallet</button>' +
 				'</form>'
@@ -69,7 +69,7 @@ function addItem() {
 function deleteItem(cardId) {
 	$('#'+cardId+' #deleteItem').on('click', function(event){
 		event.preventDefault();
-		let postBody = {id: cardId};
+		let postBody = {_id: cardId};
 	$.ajax({ 
 		url: profileUrl+pageId, 
 		type: 'DELETE',
@@ -97,10 +97,11 @@ function updateItem(card) {
 			'<input id="update-desc" type="text" name="desc" value="'+card.description+'">' +
 
 			'<label>URL</label>' +
-			'<input id="update-link" type="text" name="link" value="'+card.url+'" for="update description">' +
+			'<input id="update-link" type="text" name="link" value="'+card.url+'" for="update-link">' +
 
 			'<label>Picture</label>' +
-			'<input id="update-img" type="text" name="img" value="'+card.image+'" for="update image">' +
+			'<input id="update-img" type="hidden" role="uploadcare-uploader" value="'+card.image+'" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
+			// '<input id="update-img" type="text" name="img" value="'+card.image+'" for="update-image">' +
 			'<button id="closeButton" class="close button" type="button">Close</button>' +
 			'<button class="submitUpdateButton" class="button" type="button">Update your wallet</button>' +
 		'</form>'

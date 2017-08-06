@@ -2,6 +2,7 @@ const {BasicStrategy} = require('passport-http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const _ = require('lodash');
 
 const {User, Wallet} = require('../models/models');
 
@@ -89,10 +90,7 @@ router.post('/', (req, res) => {
     .exec()
     .then(count => {
       if (count > 0) {
-        return Promise.reject({
-          name: 'AuthenticationError',
-          message: 'username already taken'
-        });
+        return res.status(500).json({message: 'Username already exists'})
       }
       // if no existing user, hash password
       return User.hashPassword(password)
@@ -105,7 +103,8 @@ router.post('/', (req, res) => {
         })
     })
     .then(user => {
-      return res.status(201).json(user.apiRepr());
+      let userPick = _.pick(user, 'username', 'id', 'wallet')
+      return res.status(201).json(userPick);
     })
     .catch(err => {
       if (err.name === 'AuthenticationError') {
@@ -120,7 +119,10 @@ router.get('/wallet/:id', (req, res) => {
   return User
     .findById(req.params.id)
     .exec()
-    .then(users => res.json(users.justWallets()))
+    .then(user => {
+      let userPick = _.pick(user, 'username', 'id', 'wallet')
+      res.json(userPick)
+    })
     .catch(err => {
       res.status(500).json({message: err})
     });
@@ -155,10 +157,12 @@ router.use(passport.initialize());
 //checks to make sure a user exists and has the proper credentials before proceeding to the wallet.
 router.get('/me',
   passport.authenticate('basic', {session: false}),
-  (req, res) => 
-  res.json({user: req.user.apiRepr()})
-);
+  (req, res) => {
+  let userPick = _.pick(req.user, 'username', 'id', 'wallet')
+  res.json({user: userPick})
+});
 
+    
 //Adds a new item to the wallet.
 router.post('/wallet/:id', (req, res) => {
   //Checks to make sure the required fields are there. In this case, it is only the item description 
@@ -198,16 +202,15 @@ router.delete('/wallet/:id', (req, res) => {
   User
     .findById(req.params.id)
     .then(user => {
-        user.wallet.forEach(function(walletObj){
-          if(walletObj.id === req.body.id){
-            user.wallet.splice(user.wallet.indexOf(req.params.id));
-            user.markModified('wallet');
-            user.save();
-            res.sendStatus(204);
-          }
-        })
+      user.removeCard(req.body._id).then(() => {
+        res.status(200).send();
+        location.reload();
     })
-});
+    .catch(err => {
+      res.status(500).json({message: err})
+    })
+  })
+})
 
 router.put('/wallet/:id', function(req, res, next) {
 

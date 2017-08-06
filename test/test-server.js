@@ -1,6 +1,6 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var server = require('../server');
+var server = require('../server/server');
 const mongoose = require('mongoose');
 const faker = require('faker');
 
@@ -10,9 +10,9 @@ var storage = server.storage;
 
 chai.use(chaiHttp);
 
-const {User, Wallet} = require('../users/models');
-const {runServer, closeServer} = require('../server');
-const {TEST_DATABASE_URL} = require('../config');
+const {User, Wallet} = require('../models/models');
+const {runServer, closeServer} = require('../server/server');
+const {TEST_DATABASE_URL} = require('../config/config');
 
 function seedUserData(){
   console.info('seeding list data');
