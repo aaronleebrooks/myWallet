@@ -1,6 +1,9 @@
 # myWallet
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2a2be3f36a314198b5c0d7d73518c7170d0cd232
 ##App description:
 
 If you're like me, sometimes you lose your wallet and everyhing you love within it. It's a huge hassle to try and figure out what you had in there, what things you are missing, how to replace it all. myWallet is a simple tool to help you remember what was in your wallet, and helps you replace those items at the click of a mouse.
