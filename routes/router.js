@@ -162,7 +162,6 @@ router.get('/me',
   res.json({user: userPick})
 });
 
-    
 //Adds a new item to the wallet.
 router.post('/wallet/:id', (req, res) => {
   //Checks to make sure the required fields are there. In this case, it is only the item description 

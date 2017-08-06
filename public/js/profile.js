@@ -22,7 +22,7 @@ function addButton(){
 					'<label>Picture</label>' +
 					'<input class="button" id="item-img" type="hidden" role="uploadcare-uploader" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
 					'<button id="addCloseButton" class="button" type="button">Close</button>' +
-					'<button id="submitButton" class="button" type="submit">Add something to your wallet</button>' +
+					'<button id="submitButton" class="button" type="submit">Add it to your wallet</button>' +
 				'</form>'
 				)
 			addItem();
