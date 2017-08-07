@@ -83,9 +83,7 @@ function deleteItem(cardId) {
       	return res;
          }
 	})
-	.then(
-		location.reload();
-	)
+	.then(location.reload());
 	})
 }
 
