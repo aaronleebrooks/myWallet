@@ -11,6 +11,7 @@ function addButton(){
 			event.preventDefault();
 			$('#addForm').replaceWith('<form id="addForm" for="addForm">' +
 					'<label>Item Name</label>' +
+					'<div class="required"></div>' +
 					`<input id="item-name" type="text" name="username" placeholder="ex. Visa Card, Driver's License, picture of Mom" for= "item name">` +
 
 					'<label>Item Description</label>' +
@@ -45,6 +46,35 @@ function closeButton() {
 function addItem() {
 	$('#addForm').on('submit', function(event){
 		event.preventDefault();
+
+
+	if ($('#item-name').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a name!</p>' +
+			'</div>'
+			)
+  }
+
+
+	if ($('#item-desc').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a description!</p>' +
+			'</div>'
+			)
+  }
+
+
+  	if ($('#item-desc').val() == '' && $('#item-name').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a name and a description!</p>' +
+			'</div>'
+			)
+  }
+
+
 		let postBody = {
 			name: $('#item-name').val(),
 			description: $('#item-desc').val(),
@@ -92,6 +122,7 @@ function updateItem(card) {
 		event.preventDefault();
 		$('#'+card._id).replaceWith('<form id="'+card._id+'" class="updateForm" for="'+card._id+'">' +
 			'<label>Item Name</label>' +
+			'<div class="required"></div>' +
 			'<input id="update-name" type="text" name="username" value="'+ card.name +'" for= "update name">' +
 
 			'<label>Item Description</label>' +
@@ -141,6 +172,34 @@ function closeUpdater(card) {
 function putItem(cardId) {
 	$('#'+cardId+' .submitUpdateButton').on('click', function(event){
 		event.preventDefault();
+
+	if ($('#update-name').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a name!</p>' +
+			'</div>'
+			)
+  }
+
+
+	if ($('#update-desc').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a description!</p>' +
+			'</div>'
+			)
+  }
+
+
+  	if ($('#update-desc').val() == '' && $('#update-name').val() == '') {
+		$('.required').replaceWith(
+			'<div class="required">' +
+			'<p>You need to have a name and a description!</p>' +
+			'</div>'
+			)
+  }
+
+
 		let postBody = {
 			name: $('#update-name').val(),
 			description: $('#update-desc').val(),
