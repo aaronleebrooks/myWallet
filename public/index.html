@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<title>myWallet</title>
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/landing.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 </head>
@@ -11,26 +11,57 @@
 		<h1>Oh... Did you lose your Wallet?</h1>
 	</header>
 
-	<main role="signIn">
-		<form id='signIn' class= "signUp" for="signIn">
+	<main role="landingPage">
+		<section class= "landing" for="signIn">
+			<h2>Welcome to myWallet</h2>
+			<h4>The easy way to keep track of what was in your wallet</h5>
+			
+			<a href="./login.html" class="button">Log in</a>
+			<a href="./signup.html" class="button">Sign Up</a>
 
-			<label>Username</label>
-			<input id="sign-in-user" type="text" name="username" placeholder="Don't lose your username" for= "username">
+			<div class="holder">
+				<div class='instructions'>	
+					<h3>With myWallet, you can...</h3>
+					
+					<div class="instructCard">				
+					<h4>See</h4>
+					<p>Look at all of the items in your wallet, as well as how to replace them.</p>
+					</div>
+					
+					<div class="instructCard">
+					<h4>Add</h4>
+					<p>Easily add new items to your myWallet, including uploading your own images!</p>
+					</div>
+					
+					<div class="instructCard">
+					<h4>Update</h4>
+					<p>Keep your myWallet up to date by updating the information on the items that are currently in your wallet.</p>
+					</div>
+					
+					<div class="instructCard">
+					<h4>Delete</h4>
+					<p>Once you no longer have an item in your wallet, easily remove it on myWallet</p>
+					</div>
+				</div>
+				<div class='testimonials'>
+					<div class="quoteCard">
+						<img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ0NjgzNzcwNV5BMl5BanBnXkFtZTcwODExMDYxOQ@@._V1_UX214_CR0,0,214,317_AL_.jpg">
+						<p>"I use myWallet because I lose my wallet at least 4 times a week." - Seth Rogan</p>
+					</div>
 
-			<label>Password</label>
-			<input id="sign-in-password" type="password" name="password" placeholder="1234passw0rd" for="Password">
+					<div class="quoteCard">
+						<img src="https://vignette3.wikia.nocookie.net/batman/images/4/46/Bruce_Wayne_06.jpg/revision/latest?cb=20090604000908">
+						<p>"If my parents had myWallet, maybe they wouldn't have been so worried about getting robbed." - Bruce Wayne</p>
+					</div>
 
-			<div class="buttonForReal">
-				<button type= "submit" class= "button">Yes, I lost my wallet</button>
+					<div class="quoteCard">
+						<img src="https://pmccorp.files.wordpress.com/2014/07/03_pmc_board_bio_wozniak1.png?w=289">
+						<p>"myWallet is changing the wallet item tracking industry like how Uber changed the taxi industry." - Steve Wozniak</p>
+					</div>
+				</div>
 			</div>
-			<div class= "confirmation"></div>
-		</form>
-
-		<footer role="signup-link" class= "logIn">
-			<p><a href="./signup.html">Sign up</a> to lose the hassle of losing your wallet</p>
-		</footer>
+		</section>
 	</main>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/login.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js">
 </body>
 </html>

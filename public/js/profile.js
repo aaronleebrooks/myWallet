@@ -10,20 +10,24 @@ function addButton(){
 		$('#addForm').on('click', function(event) {
 			event.preventDefault();
 			$('#addForm').replaceWith('<form id="addForm" for="addForm">' +
-					'<label>Item Name</label>' +
 					'<div class="required"></div>' +
-					`<input id="item-name" type="text" name="username" placeholder="ex. Visa Card, Driver's License, picture of Mom" for= "item name">` +
+					'<div class="questions"' +
+						'<label>Item Name</label>' +
+						`<input id="item-name" type="text" name="username" placeholder="ex. Visa Card, Driver's License, picture of Mom" for= "item name">` +
 
-					'<label>Item Description</label>' +
-					'<input id="item-desc" type="text" name="desc" placeholder="Short description. Do not put any card numbers here" for="item description">' +
+						'<label>Item Description</label>' +
+						'<input id="item-desc" type="text" name="desc" placeholder="Short description. Do not put any card numbers here" for="item description">' +
 
-					'<label>URL</label>' +
-					'<input id="item-link" type="text" name="link" placeholder="Link to item or how to replace" for="item description">' +
+						'<label>URL</label>' +
+						'<input id="item-link" type="text" name="link" placeholder="Link to item or how to replace" for="item description">' +
 
-					'<label>Picture</label>' +
-					'<input class="button" id="item-img" type="hidden" role="uploadcare-uploader" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
-					'<button id="addCloseButton" class="button" type="button">Close</button>' +
-					'<button id="submitButton" class="button" type="submit">Add it to your wallet</button>' +
+						'<label>Picture</label>' +
+						'<input class="button" id="item-img" type="hidden" role="uploadcare-uploader" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
+					'</div>'+
+					'<div class="buttonHolder">' +
+						'<button id="addCloseButton" class="button" type="button">Close</button>' +
+						'<button id="submitButton" class="button" type="submit">Add it to your wallet</button>' +
+					'</div>'+	
 				'</form>'
 				)
 			addItem();
@@ -121,21 +125,24 @@ function updateItem(card) {
 	$('#'+card._id+' .updateItem').on('click', function(event){
 		event.preventDefault();
 		$('#'+card._id).replaceWith('<form id="'+card._id+'" class="updateForm" for="'+card._id+'">' +
-			'<label>Item Name</label>' +
 			'<div class="required"></div>' +
-			'<input id="update-name" type="text" name="username" value="'+ card.name +'" for= "update name">' +
+				'<div class="questions"' +					
+					'<label>Item Name</label>' +
+					'<input id="update-name" type="text" name="username" value="'+ card.name +'" for= "update name">' +
 
-			'<label>Item Description</label>' +
-			'<input id="update-desc" type="text" name="desc" value="'+card.description+'">' +
+					'<label>Item Description</label>' +
+					'<input id="update-desc" type="text" name="desc" value="'+card.description+'">' +
 
-			'<label>URL</label>' +
-			'<input id="update-link" type="text" name="link" value="'+card.url+'" for="update-link">' +
+					'<label>URL</label>' +
+					'<input id="update-link" type="text" name="link" value="'+card.url+'" for="update-link">' +
 
-			'<label>Picture</label>' +
-			'<input id="update-img" type="hidden" role="uploadcare-uploader" value="'+card.image+'" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
-			// '<input id="update-img" type="text" name="img" value="'+card.image+'" for="update-image">' +
-			'<button id="closeButton" class="close button" type="button">Close</button>' +
-			'<button class="submitUpdateButton" class="button" type="button">Update your wallet</button>' +
+					'<label>Picture</label>' +
+					'<input id="update-img" type="hidden" role="uploadcare-uploader" value="'+card.image+'" name="content" data-public-key="30e2302b4a7b63ecb4bf" data-images-only />'+
+				'</div>' +
+				'<div class="buttonHolder">' +
+					'<button id="closeButton" class="button" type="button">Close</button>' +
+					'<button class="submitUpdateButton button" type="button">Update your wallet</button>' +
+				'</div>'+
 		'</form>'
 		)
 	putItem(card._id);
