@@ -101,6 +101,7 @@ h4 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   margin: 15px 55px;
   border: 1px solid black;
   border-radius: 15px;
@@ -113,7 +114,8 @@ h4 {
 }
 
 .quoteCard p{
-  width: 65%;
+  flex: 0 .25 auto;
+  width: 55%;
   margin-bottom: 25px;
   font-size: 18px;
   margin-right: 10px;
@@ -161,11 +163,13 @@ h4 {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin: 0 auto;
 }
   .testimonials {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    justify-content: flex-start;
 }
 
 .holder {
@@ -174,11 +178,28 @@ h4 {
 }
 
 .instructCard {
-  width: 100%;
+  width: 85%;
+  margin-left: 0px;
+}
+
+.instructCard p{
+  display: inline-block;
+  width: 75%;
+  text-align: right;
+  font-size: 20px;
+}
+
+.instructCard h4 {
+  display: block;
+  width: 95%;
+  margin-bottom: 10px;
+  font-size: 35px;
+  text-align: center;
 }
 
   .quoteCard {
     display: flex;
-    width: 100%;
+    width: 75%;
+    margin-left: 0px;
     align-content: flex-start;
 }
