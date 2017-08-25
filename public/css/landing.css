@@ -13,7 +13,7 @@ header h1 {
   font-family: 'Alfa Slab One', cursive;
   color: #524656;
   text-align: center;
-  font-size: 60px;
+  font-size: 50px;
   letter-spacing: 4px;
 }
 
@@ -32,7 +32,7 @@ h2 {
   color: #8F9CA1;
   text-align: center;
   padding-top: 10px;
-  margin: 5px auto;
+  margin: 0px auto;
   font-weight: 300px;
   font-size: 35px;
   line-height: 35px;
@@ -45,7 +45,7 @@ h3 {
   color: #8F9CA1;
   text-align: center;
   padding-top: 10px;
-  margin: 0 auto 45px;
+  margin: 0 auto;
   font-weight: 300px;
   font-size: 30px;
   line-height: 35px;
@@ -56,15 +56,15 @@ h3 {
 h4 {
   display: block;
   width: 95%;
-  margin: 0 auto;
+  margin: 5px auto;
   font-size: 25px;
   text-align: center;
 }
 
 .button {
-  margin: 15px;
+  margin: 15px auto;
   display: inline;
-  width: 45%;
+  width: 15%;
   border: 2px solid #EA7A58;
   padding: 15px;
   border-radius: 3px;
@@ -84,9 +84,9 @@ h4 {
 .instructions {
   position: relative;
   display: inline-block;
-  width: 47%;
-  margin-right: 15px;
-  margin-left: 15px;
+  width: 37%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .testimonials {
@@ -136,18 +136,17 @@ h4 {
 
 .instructCard p{
   display: inline-block;
-  width: 65%;
-  margin-right: 30px;
+  width: 95%;
+  margin-right: auto;
   margin-left: auto;
-  text-align: right;
+  text-align: left;
   font-size: 20px;
 }
 .instructCard h4 {
   display: block;
   width: 95%;
-  margin-bottom: 10px;
+  margin-bottom: 0 auto;
   font-size: 35px;
-  margin-left: 50px;
   text-align: left;
 }
 
@@ -163,43 +162,56 @@ h4 {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin: 0 auto;
 }
   .testimonials {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
-.holder {
-  display: flex;
-  flex-wrap: wrap;
-}
+  .holder {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.instructCard {
-  width: 85%;
-  margin-left: 0px;
-}
+  .instructCard {
+    width: 85%;
+    margin: 0 auto;
+  }
 
-.instructCard p{
-  display: inline-block;
-  width: 75%;
-  text-align: right;
-  font-size: 20px;
-}
+  .instructCard p{
+    display: inline-block;
+    width: 75%;
+    text-align: center;
+    font-size: 20px;
+  }
 
-.instructCard h4 {
-  display: block;
-  width: 95%;
-  margin-bottom: 10px;
-  font-size: 35px;
-  text-align: center;
-}
+  .instructCard h4 {
+    display: block;
+    width: 95%;
+    margin-bottom: 10px;
+    font-size: 35px;
+    text-align: center;
+  }
 
   .quoteCard {
     display: flex;
-    width: 75%;
-    margin-left: 0px;
+    width: 100%;
     align-content: flex-start;
-}
+    justify-content: center;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .quoteCard img {
+    max-width: 100%;
+    max-height: 300px;
+  }
+
+  .quoteCard p {
+    width: 85%;
+    font-size: 20px;
+    text-align: center;
+  }
+  

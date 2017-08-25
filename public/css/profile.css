@@ -12,7 +12,7 @@ header h1 {
   font-family: 'Alfa Slab One', cursive;
   color: #524656;
   text-align: center;
-  font-size: 60px;
+  font-size: 50px;
   letter-spacing: 4px;
 }
 
@@ -59,7 +59,7 @@ header h1 {
   padding: 15px;
   margin: 15px;
   font-size: 15px;
-  width: 75%;
+  width: 30%;
 }
 
 .uploadcare--widget__button_type_open {
